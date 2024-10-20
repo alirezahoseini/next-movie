@@ -5,15 +5,15 @@ import Title from "../Title/Title";
 import BsetMoviesItem from "./BsetMoviesItem";
 import { useState } from "react";
 
-function BestMoviesSlider({items, moreTitle, title, moreHref}) {
-      const [slidesArray, setSlidesArray] = useState([]);
+function BestMoviesSlider({ items, moreTitle, title, moreHref }) {
+    const [slidesArray, setSlidesArray] = useState([]);
 
-      if (items.status === 200 && slidesArray.length === 0) {
+    if (items.status === 200 && slidesArray.length === 0) {
         setSlidesArray(items.data.results.slice(0, 7))
-      }
-      if(items.status === 404 || items.status === 'error'){
+    }
+    if (items.status === 404 || items.status === 'error') {
         setSlidesArray([]);
-      }
+    }
 
     return (
         <>

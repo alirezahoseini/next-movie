@@ -1,20 +1,16 @@
 'use client'
 import BestMoviesSlider from '@/components/modules/BestMoviesSlider/BestMoviesSlider'
 import Carousel from '@/components/modules/Carousel/Carousel'
-import MovieCard from '@/components/modules/MovieCard/MovieCard'
 import React from 'react'
 
-function MoviesSection({trendingSeries}) {
+function MoviesSection(props) {
+  const {trendingSeries, onAirSeries, trendingMovies, popularMovies} = props;
   return (
     <>
-      {/* <Carousel >
-        <MovieCard />
-      </Carousel> */}
-      <BestMoviesSlider items={trendingSeries} title="Trending Series" moreTitle="Show more" moreHref={'series'} />
-      {/* <Carousel >
-        <MovieCard />
-      </Carousel> */}
-
+      <Carousel type={'movie'} items={trendingMovies} title="Trend movies" moreTitle="Show more" moreHref={'movies'}/>
+      <BestMoviesSlider type={'tv'} items={trendingSeries} title="Trend Series" moreTitle="Show more" moreHref={'series'} />
+      <Carousel type={'tv'} items={onAirSeries} title="On air Series" moreTitle="Show more" moreHref={'series'}/>
+      <Carousel type={'movie'} items={popularMovies} title="Popular movies" moreTitle="Show more" moreHref={'movies'}/>
     </>
   )
 }

@@ -6,14 +6,17 @@ import getMovies from "@/services/getMovies";
 export default async function Home() {
   const trendingMovies = await getMovies('trending/movie/week');
   const trendingSeries = await getMovies('trending/tv/week');
-  // const series = await getMovies('discover/tv');
-
+  const onAirSeries = await getMovies('tv/on_the_air');
+  const popularMovies = await getMovies('movie/popular');
 
   return (
     <>
       <MainSlider items={trendingMovies} />
       <MoviesSection
         trendingSeries={trendingSeries}
+        onAirSeries={onAirSeries}
+        trendingMovies={trendingMovies}
+        popularMovies={popularMovies}
       />
     </>
   );
