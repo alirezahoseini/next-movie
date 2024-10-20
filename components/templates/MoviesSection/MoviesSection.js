@@ -4,16 +4,16 @@ import Carousel from '@/components/modules/Carousel/Carousel'
 import MovieCard from '@/components/modules/MovieCard/MovieCard'
 import React from 'react'
 
-function MoviesSection() {
+function MoviesSection({trendingSeries}) {
   return (
     <>
-      <Carousel >
+      {/* <Carousel >
         <MovieCard />
-      </Carousel>
-      <BestMoviesSlider />
-      <Carousel >
+      </Carousel> */}
+      <BestMoviesSlider items={trendingSeries} title="Trending Series" moreTitle="Show more" moreHref={'series'} />
+      {/* <Carousel >
         <MovieCard />
-      </Carousel>
+      </Carousel> */}
 
     </>
   )

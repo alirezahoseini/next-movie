@@ -82,7 +82,7 @@ export default function Carousel() {
                     className="mt-5 max-w-screen-2xl">
                     {slides.map(item => (
                         <SwiperSlide key={item.id} {...item}>
-                            <MovieCard  {...item} />
+                            {/* <MovieCard  {...item} /> */}
                         </SwiperSlide>
                     ))}
                 </Swiper>

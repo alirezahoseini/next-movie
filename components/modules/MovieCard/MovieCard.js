@@ -23,7 +23,7 @@ function MovieCard(props) {
           <span>2023</span>
           <span className='flex gap-2'>
             {score}
-            <img className='w-[25px]' src={imdb_logo} alt="" />
+            <img className='w-[25px]' src={imdb_logo.src} alt="" />
           </span>
         </div>
       </div>

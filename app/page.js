@@ -4,14 +4,17 @@ import getMovies from "@/services/getMovies";
 
 
 export default async function Home() {
-  const movies = await getMovies('discover/movie');
-  const series = await getMovies('discover/tv');
+  const trendingMovies = await getMovies('trending/movie/week');
+  const trendingSeries = await getMovies('trending/tv/week');
+  // const series = await getMovies('discover/tv');
 
 
   return (
     <>
-      <MainSlider items={movies} />
-      {/* <MoviesSection /> */}
+      <MainSlider items={trendingMovies} />
+      <MoviesSection
+        trendingSeries={trendingSeries}
+      />
     </>
   );
 }

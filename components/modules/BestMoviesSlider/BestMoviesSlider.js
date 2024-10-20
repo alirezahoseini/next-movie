@@ -1,40 +1,24 @@
+'use client'
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Title from "../Title/Title";
 import BsetMoviesItem from "./BsetMoviesItem";
+import { useState } from "react";
 
-function BestMoviesSlider() {
-    const slides = [
-        {
-          id: 1,
-          title: 'Movie Title',
-          poster: 'https://avamovie29.top/wp-content/uploads/2024/09/66de5acef289d-1024x576.jpg',
-          url: '/n'
-        },
-        {
-          id: 2,
-          title: 'From',
-          poster: 'https://avamovie29.top/wp-content/uploads/2024/01/16554773271603956480.ZARFILM-1024x576.jpg',
-          url: '/a'
-        },
-        {
-          id: 3,
-          title: 'My title',
-          poster: 'https://avamovie29.top/wp-content/uploads/2024/08/6PnnfODvQfEIAdJ5PbqYMXKdfwX-1024x462.jpg',
-          url: '/d'
-        },
-        {
-          id: 4,
-          title: 'My popster',
-          poster: 'https://avamovie29.top/wp-content/uploads/2024/09/olzdOzwunu3J5Lc0Mk4ICafm9Xb-1024x425.jpg',
-          url: '/d'
-        }
-      ]
+function BestMoviesSlider({items, moreTitle, title, moreHref}) {
+      const [slidesArray, setSlidesArray] = useState([]);
+
+      if (items.status === 200 && slidesArray.length === 0) {
+        setSlidesArray(items.data.results.slice(0, 7))
+      }
+      if(items.status === 404 || items.status === 'error'){
+        setSlidesArray([]);
+      }
 
     return (
         <>
             <div className="mt-8 px-3 max-w-screen-2xl mx-auto">
-                <Title title="Best Movies" href="/nn" moreTitle="See more " />
+                <Title title={title} href={moreHref} moreTitle={moreTitle} />
                 <Swiper
                     slidesPerView={1}
                     pagination={{
@@ -64,9 +48,9 @@ function BestMoviesSlider() {
                         },
                     }}
                     className="mt-5">
-                    {slides.map(item => (
+                    {slidesArray.map(item => (
                         <SwiperSlide key={item.id}>
-                            <BsetMoviesItem  {...item} />
+                            <BsetMoviesItem {...item} />
                         </SwiperSlide>
                     ))}
                 </Swiper>
@@ -77,3 +61,5 @@ function BestMoviesSlider() {
 
 
 export default BestMoviesSlider
+
+
