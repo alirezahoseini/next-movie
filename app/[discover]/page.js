@@ -1,12 +1,24 @@
-import React from 'react'
-import TopSection from '@/components/templates/TopSection/TopSection';
+import React from "react";
+import TopSection from "@/components/templates/TopSection/TopSection";
+import { notFound } from "next/navigation";
 
-async function page({ params }) {
+function page({ params }) {
+  // checking page route
+  if (params.discover !== "movie" && params.discover !== "tv") {
+    notFound();
+    return;
+  }
+  const dataOtions = {
+    mediaType: params.discover,
+    apiPath: `discover/${params.discover}`,
+    apiQueris: "",
+    sortBy: "",
+  };
   return (
     <>
-      <TopSection mediaType={params.discover} />
+      <TopSection {...dataOtions} />
     </>
-  )
+  );
 }
 
 export default page;

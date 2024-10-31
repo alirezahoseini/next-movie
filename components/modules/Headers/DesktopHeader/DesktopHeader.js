@@ -24,10 +24,10 @@ function DesktopHeader(props) {
             <Link href={"/"}>Home</Link>
           </li>
           <li className="border-b-4 px-2 border-transparent hover:border-red-600 transition-all duration-100">
-            <Link href={"/movies"}>Movies</Link>
+            <Link href={"/movie"}>Movies</Link>
           </li>
           <li className="border-b-4 px-2 border-transparent hover:border-red-600 transition-all duration-100">
-            <Link href={"/series"}>TV series</Link>
+            <Link href={"/tv"}>TV series</Link>
           </li>
           {/* ---- Search button and search box ---- */}
           <button

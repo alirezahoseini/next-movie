@@ -16,6 +16,7 @@ function MovieCard(props) {
     id,
   } = props;
   const type = first_air_date ? "tv" : "movie";
+  console.log(type);
   let itemTitle = type === "tv" ? name : title;
   return (
     <Link
@@ -44,8 +45,8 @@ function MovieCard(props) {
         <div className="flex items-center justify-between w-full text-sm text-slate-500">
           <span>
             {type === "tv"
-              ? first_air_date.slice(0, 4)
-              : release_date.slice(0, 4)}
+              ? first_air_date?.slice(0, 4)
+              : release_date?.slice(0, 4)}
           </span>
           <span className="flex gap-2">
             {vote_average.toFixed(1)}
