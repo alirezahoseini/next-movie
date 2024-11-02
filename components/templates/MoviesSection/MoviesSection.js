@@ -17,13 +17,16 @@ function MoviesSection(props) {
         moreTitle="Show more"
         moreHref={"movie"}
       />
-      {/* <BestMoviesSlider
+      <BestMoviesSlider
         type={"tv"}
-        items={trendingSeries}
+        url={{
+          value: "trending/tv/week",
+          queries: false,
+        }}
         title="Trend Series"
         moreTitle="Show more"
-        moreHref={"series"}
-      /> */}
+        moreHref={"tv"}
+      />
       <Carousel
         type={"tv"}
         url={{
