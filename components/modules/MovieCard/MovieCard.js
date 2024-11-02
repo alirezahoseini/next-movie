@@ -16,7 +16,6 @@ function MovieCard(props) {
     id,
   } = props;
   const type = first_air_date ? "tv" : "movie";
-  console.log(type);
   let itemTitle = type === "tv" ? name : title;
   return (
     <Link

@@ -12,7 +12,7 @@ function SliderItem(props) {
                         {title}
                     </h2>
                     <p className="text-sm text-slate-300">
-                        {overview}
+                        {overview.length > 150 ? `${overview.substring(0, 150)}...` : overview}
                     </p>
                     <Link href={`movie/${id}`} className="mt-5 inline-block bg-red-700 px-4 text-sm hover:-translate-y-1 transition-all py-2 rounded-full shadow-md " style={{ boxShadow: '0 0 10px 1px	rgba(255, 0, 0,0.6)' }}>Watch Now</Link>
                     <Link href={`movie/${id}`} className="mt-5 text-sm hover:-translate-y-1 transition-all inline-block border px-4 py-2 rounded-full shadow-md ml-5" >Watch trailer</Link>

@@ -5,7 +5,7 @@ function MainSliderLoader(props) {
   const { isLoading, error, data } = props;
   return (
     <>
-      <div className="slider-bg-img block w-full h-[90vh] bg-center bg-no-repeat bg-cover relative">
+      <div className="slider-bg-img block w-full h-[90vh] bg-center bg-no-repeat bg-cover relative max-w-screen-2xl mx-auto">
         <div className="bg-slate-950 w-full h-full top-0 left-0 bg-opacity-70 z-0 absolute" />
         {!isLoading && !error && (
           //  Start Loading

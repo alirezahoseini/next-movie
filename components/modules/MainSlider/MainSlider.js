@@ -7,7 +7,7 @@ import SliderItem from "./SliderItem";
 import useApi from "@/hooks/useApi";
 import MainSliderLoader from "./MainSliderLoader";
 
-export default function MainSlider({ items }) {
+export default function MainSlider() {
   const [slidesArray, setSlidesArray] = useState([]);
   const { data, error, isLoading, setApiUrl } = useApi();
 

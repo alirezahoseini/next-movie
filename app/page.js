@@ -4,20 +4,18 @@ import useApi from "@/hooks/useApi";
 import getMovies from "@/services/getMovies";
 
 export default async function Home() {
-  // const trendingMovies = await getMovies("trending/movie/week");
+
   // const trendingSeries = await getMovies("trending/tv/week");
   // const onAirSeries = await getMovies("tv/on_the_air");
-  // const popularMovies = await getMovies("movie/popular");
 
   return (
     <>
       <MainSlider />
-      {/* <MoviesSection
-        trendingSeries={trendingSeries}
-        onAirSeries={onAirSeries}
-        trendingMovies={trendingMovies}
-        popularMovies={popularMovies}
-      /> */}
+      <MoviesSection
+        // trendingSeries={trendingSeries}
+        // onAirSeries={onAirSeries}
+        // popularMovies={popularMovies}
+      />
     </>
   );
 }
