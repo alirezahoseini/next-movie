@@ -1,10 +1,11 @@
 "use client";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import SliderItem from "./SliderItem";
-import { useEffect, useState } from "react";
 import useApi from "@/hooks/useApi";
+import MainSliderLoader from "./MainSliderLoader";
 
 export default function MainSlider({ items }) {
   const [slidesArray, setSlidesArray] = useState([]);
@@ -20,31 +21,31 @@ export default function MainSlider({ items }) {
     if (data?.results) {
       setSlidesArray(data.results.slice(0, 5));
     }
-    if (data) {
-      setSlidesArray([]);
+    if (error) {
+      console.log(error);
     }
   }, [data, error]);
 
-  // if(items.status === 404 || items.status === 'error'){
-  //   setSlidesArray([]);
-  // }
-
   return (
     <>
-      <Swiper
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: true,
-        }}
-        modules={[Autoplay]}
-        className="max-w-screen-2xl bg-black h-[90vh]"
-      >
-        {slidesArray.map((item) => (
-          <SwiperSlide key={item.id}>
-            <SliderItem {...item} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {data !== undefined ? (
+        <Swiper
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: true,
+          }}
+          modules={[Autoplay]}
+          className="max-w-screen-2xl bg-black h-[90vh]"
+        >
+          {slidesArray.map((item) => (
+            <SwiperSlide key={item.id}>
+              <SliderItem {...item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <MainSliderLoader isLoading={isLoading} error={error} data={data} />
+      )}
     </>
   );
 }
