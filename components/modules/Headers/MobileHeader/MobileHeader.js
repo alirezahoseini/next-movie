@@ -59,13 +59,19 @@ function MobileHeader(props) {
             </Link>
           </li>
           <li onClick={() => setIsOpenMenu((prevState) => !prevState)}>
-            <Link href={"/movie"} className="flex items-center gap-2 mt-3 p-2">
+            <Link
+              href={"/discover/movie"}
+              className="flex items-center gap-2 mt-3 p-2"
+            >
               <TbMovie style={{ fontSize: "1.5rem" }} />
               Movies
             </Link>
           </li>
           <li onClick={() => setIsOpenMenu((prevState) => !prevState)}>
-            <Link href={"/tv"} className="flex items-center gap-2 mt-3 p-2">
+            <Link
+              href={"/discover/tv"}
+              className="flex items-center gap-2 mt-3 p-2"
+            >
               <MdOutlineLiveTv style={{ fontSize: "1.5rem" }} />
               TV series
             </Link>

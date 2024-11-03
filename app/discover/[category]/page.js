@@ -4,13 +4,13 @@ import { notFound } from "next/navigation";
 
 function page({ params }) {
   // checking page route
-  if (params.discover !== "movie" && params.discover !== "tv") {
+  if (params.category !== "movie" && params.category !== "tv") {
     notFound();
     return;
   }
   const dataOtions = {
-    mediaType: params.discover,
-    apiPath: `discover/${params.discover}`,
+    mediaType: params.category,
+    apiPath: `discover/${params.category}`,
     apiQueris: "",
     sortBy: "",
   };

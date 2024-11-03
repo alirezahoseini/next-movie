@@ -15,7 +15,7 @@ function MoviesSection(props) {
         }}
         title="Trend movies"
         moreTitle="Show more"
-        moreHref={"movie"}
+        moreHref={"discover/movie"}
       />
       <BestMoviesSlider
         type={"tv"}
@@ -25,7 +25,7 @@ function MoviesSection(props) {
         }}
         title="Trend Series"
         moreTitle="Show more"
-        moreHref={"tv"}
+        moreHref={"discover/tv"}
       />
       <Carousel
         type={"tv"}
@@ -35,7 +35,7 @@ function MoviesSection(props) {
         }}
         title="On Air Series"
         moreTitle="Show more"
-        moreHref={"tv"}
+        moreHref={"discover/tv"}
       />
       <Carousel
         type={"movie"}
@@ -45,7 +45,7 @@ function MoviesSection(props) {
         }}
         title="Popular movies"
         moreTitle="Show more"
-        moreHref={"movie"}
+        moreHref={"discover/movie"}
       />
     </>
   );
