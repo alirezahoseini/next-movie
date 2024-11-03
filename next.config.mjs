@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
-    domains: ['image.tmdb.org'],
-  }
+    domains: ["image.tmdb.org"],
+  },
 };
 
 export default nextConfig;

@@ -1,76 +1,99 @@
-import { useState, useEffect } from "react";
-import getMovies from "@/services/getMovies";
+import { useState, useEffect, useRef } from "react";
+import useApi from "@/hooks/useApi";
 import LoadMoreButton from "@/components/modules/LoadMoreButton/LoadMoreButton";
 
 function paginationHOC(OrginalComponent) {
   function NewComponent(props) {
-    const [url, setUrl] = useState("");
-    const [items, setItems] = useState([]);
-    const [sortOption, setSortOption] = useState("");
-    const [pageCount, setPageCount] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const { apiPath, apiQueris, sortBy } = props;
+    const { data, error, isLoading, setApiUrl } = useApi();
+    const [pageConfigs, setPageConfigs] = useState({
+      items: [],
+      currentPage: 1,
+      allPages: 1,
+      sortBy: props.sortBy,
+      apiQueris: props.apiQueris,
+      apiPath: props.apiPath,
+      isReplaceData: false,
+      isFirstLoad: true,
+    });
 
-    // Fetch data
-    const fetchData = async (isReplaceItems) => {
-      if (url === "") {
-        return;
-      }
+    const getDataFromApi = () => {
       // Fetching
-      const apiRes = await getMovies(
-        url,
-        `page=${pageCount}${sortOption ? `&sort_by=${sortOption}` : ""}${
-          apiQueris ? `${apiQueris}` : ""
-        }`
-      );
-      // If response is OK =>
-      if (apiRes.status === 200) {
-        setTotalPages(apiRes.data.total_pages);
-        if (!isReplaceItems) {
-          // Add items ti array
-          setItems((prevItems) => [...prevItems, ...apiRes.data.results]);
-        } else {
-          // Replace sorted items
-          setItems(() => [...apiRes.data.results]);
-        }
+      setApiUrl({
+        value: pageConfigs.apiPath,
+        queries: `page=${pageConfigs.currentPage}${
+          pageConfigs.sortBy ? `&sort_by=${pageConfigs.sortBy}` : ""
+        }${pageConfigs.apiQueris ? `${pageConfigs.apiQueris}` : ""}`,
+      });
+    };
+
+    const setAndCheckData = (items) => {
+      if (pageConfigs.isReplaceData) {
+        // Replace items in state
+        setPageConfigs((prev) => {
+          return {
+            ...prev,
+            items: [...items],
+            isReplaceData: false,
+          };
+        });
       } else {
+        // Add more items to state
+        setPageConfigs((prev) => {
+          return { ...prev, items: [...prev.items, ...items] };
+        });
       }
     };
 
-    // first config
+    // Data and errors change handler
     useEffect(() => {
-      setUrl(apiPath);
-      setSortOption(sortBy);
-    }, []);
-    // sorting handler
+      // Dactive first load
+      if (pageConfigs.isFirstLoad) {
+        // This code runing only in mounting
+        setPageConfigs((prev) => {
+          return { ...prev, isFirstLoad: false };
+        });
+        return;
+      } else {
+        // This codes runing after  isFirstLoad === FALSE
+        // If response is OK =>
+        if (data?.results) {
+          setAndCheckData(data.results);
+          setPageConfigs((prev) => {
+            return { ...prev, allPages: data.total_pages };
+          });
+        }
+        if (error) {
+          console.log(error);
+        }
+      }
+    }, [data, error]);
+
+    // Sort and currentPage change handler
     useEffect(() => {
-      setUrl(apiPath);
-      fetchData(true);
-      setTotalPages(1);
-      setPageCount(1);
-    }, [sortOption]);
-    // Change url handler
-    useEffect(() => {
-      fetchData();
-    }, [pageCount, url]);
+      getDataFromApi();
+    }, [pageConfigs.currentPage, pageConfigs.sortBy]);
+
     return (
       <>
         <OrginalComponent
           {...props}
-          items={items}
-          setSortOption={setSortOption}
+          items={pageConfigs.items}
+          setSortOption={setPageConfigs}
         />
-        {totalPages > pageCount && totalPages !== pageCount && (
-          <LoadMoreButton
-            nextPageHandler={() =>
-              setPageCount((prev) => {
-                if (prev < totalPages) {
-                  return prev + 1;
-                }
-              })
-            }
-          />
-        )}
+        {pageConfigs.allPages > pageConfigs.currentPage &&
+          pageConfigs.allPages !== pageConfigs.currentPage && (
+            <LoadMoreButton
+              nextPageHandler={() =>
+                setPageConfigs((prev) => {
+                  if (prev.currentPage < pageConfigs.allPages) {
+                    return { ...prev, currentPage: prev["currentPage"] + 1 };
+                  } else {
+                    return { ...prev };
+                  }
+                })
+              }
+            />
+          )}
       </>
     );
   }

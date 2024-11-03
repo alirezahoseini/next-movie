@@ -23,7 +23,17 @@ function SortForm({ mediaType, setSortOption }) {
       <span>Sort by :</span>
       <div className="relative">
         <select
-          onChange={(event) => setSortOption(event.target.value)}
+          onChange={(event) =>
+            setSortOption((prev) => {
+              return {
+                ...prev,
+                sortBy: event.target.value,
+                currentPage: 1,
+                allPages: 1,
+                isReplaceData: true,
+              };
+            })
+          }
           className="w-full bg-slate-700 placeholder:text-slate-400 text-white text-sm border border-slate-700 rounded pl-3 pr-8 py-2 transition duration-300 ease focus:outline-none focus:border-blue-400 hover:border-slate-400 shadow-sm focus:shadow-md appearance-none cursor-pointer"
         >
           {sortItems.map((item) => (
