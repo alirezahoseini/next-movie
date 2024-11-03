@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import useApi from "@/hooks/useApi";
 import LoadMoreButton from "@/components/modules/LoadMoreButton/LoadMoreButton";
+import MoviesGridLoader from "../modules/MoviesGrid/MoviesGridLoader";
+import GlobalLoader from "../modules/GlobalLoader/GlobalLoader";
 
 function paginationHOC(OrginalComponent) {
   function NewComponent(props) {
@@ -14,6 +16,7 @@ function paginationHOC(OrginalComponent) {
       apiPath: props.apiPath,
       isReplaceData: false,
       isFirstLoad: true,
+      isLoadingData: true,
     });
 
     const getDataFromApi = () => {
@@ -34,12 +37,17 @@ function paginationHOC(OrginalComponent) {
             ...prev,
             items: [...items],
             isReplaceData: false,
+            isLoadingData: false,
           };
         });
       } else {
         // Add more items to state
         setPageConfigs((prev) => {
-          return { ...prev, items: [...prev.items, ...items] };
+          return {
+            ...prev,
+            isLoadingData: false,
+            items: [...prev.items, ...items],
+          };
         });
       }
     };
@@ -75,25 +83,37 @@ function paginationHOC(OrginalComponent) {
 
     return (
       <>
-        <OrginalComponent
-          {...props}
-          items={pageConfigs.items}
-          setSortOption={setPageConfigs}
-        />
-        {pageConfigs.allPages > pageConfigs.currentPage &&
-          pageConfigs.allPages !== pageConfigs.currentPage && (
-            <LoadMoreButton
-              nextPageHandler={() =>
-                setPageConfigs((prev) => {
-                  if (prev.currentPage < pageConfigs.allPages) {
-                    return { ...prev, currentPage: prev["currentPage"] + 1 };
-                  } else {
-                    return { ...prev };
-                  }
-                })
-              }
+        {pageConfigs.items && !error && (
+          <>
+            <OrginalComponent
+              {...props}
+              items={pageConfigs.items}
+              setSortOption={setPageConfigs}
             />
-          )}
+            <GlobalLoader show={pageConfigs.isLoadingData} />
+            {pageConfigs.allPages > pageConfigs.currentPage &&
+              pageConfigs.allPages !== pageConfigs.currentPage && (
+                <LoadMoreButton
+                  nextPageHandler={() =>
+                    setPageConfigs((prev) => {
+                      if (prev.currentPage < pageConfigs.allPages) {
+                        return {
+                          ...prev,
+                          isLoadingData: true,
+                          currentPage: prev["currentPage"] + 1,
+                        };
+                      } else {
+                        return { ...prev };
+                      }
+                    })
+                  }
+                />
+              )}
+          </>
+        )}
+        {error && (
+          <MoviesGridLoader isLoading={isLoading} error={error} data={data} />
+        )}
       </>
     );
   }
@@ -101,3 +121,5 @@ function paginationHOC(OrginalComponent) {
 }
 
 export default paginationHOC;
+
+MoviesGridLoader;

@@ -31,6 +31,7 @@ function SortForm({ mediaType, setSortOption }) {
                 currentPage: 1,
                 allPages: 1,
                 isReplaceData: true,
+                isLoadingData: true,
               };
             })
           }
