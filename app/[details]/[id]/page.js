@@ -5,6 +5,7 @@ import GlobalLoader from "@/components/modules/GlobalLoader/GlobalLoader";
 import PostDetails from "@/components/modules/PostDetails/PostDetails";
 import CastsBox from "@/components/modules/CastsBox/CastsBox";
 import { RiSignalWifiErrorLine } from "react-icons/ri";
+import Carousel from "@/components/modules/Carousel/Carousel";
 
 function page({ params }) {
   const [isLoadingData, setIsLoadingData] = useState(true);
@@ -31,7 +32,17 @@ function page({ params }) {
       {data !== undefined && !error && (
         <>
           <PostDetails {...data} params={params} />
-          <CastsBox postId={params.id} type={params.details}/>
+          <CastsBox postId={params.id} type={params.details} />
+          <Carousel
+            type={params.details}
+            url={{
+              value: `${params.details}/${params.id}/similar`,
+              queries: "language=en-US",
+            }}
+            title={`Similar ${params.details}s`}
+            moreTitle="Show more"
+            moreHref={`discover/${params.details}`}
+          />
         </>
       )}
       <GlobalLoader show={isLoadingData} />

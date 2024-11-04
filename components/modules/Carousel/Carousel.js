@@ -29,7 +29,7 @@ export default function Carousel({ url, moreTitle, title, moreHref, type }) {
         <div className="mt-8 px-3">
           <Title title={title} href={moreHref} moreTitle={moreTitle} />
         
-      {data !== undefined ? (
+      {slidesArray.length && !error ? (
           <Swiper
             autoplay={{
               delay: 2500,

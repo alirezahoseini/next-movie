@@ -29,7 +29,6 @@ function MovieCard(props) {
         </div>
         <Image
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-          unoptimized
           width={400}
           height={200}
           alt={itemTitle}
