@@ -25,8 +25,6 @@ export default function Carousel({ url, moreTitle, title, moreHref, type }) {
     }
   }, [data, error]);
 
-  console.log(data);
-
   return (
     <>
       <div className="mt-8 px-3">

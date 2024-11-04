@@ -50,7 +50,7 @@ function MovieCard(props) {
               : release_date?.slice(0, 4)}
           </span>
           <span className="flex gap-2">
-            {vote_average.toFixed(1)}
+            {vote_average?.toFixed(1)}
             <img className="w-[25px]" src={imdb_logo.src} alt="" />
           </span>
         </div>
