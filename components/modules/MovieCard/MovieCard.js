@@ -33,6 +33,7 @@ function MovieCard(props) {
           height={200}
           alt={itemTitle}
           className="w-full group-hover:p-1 group-hover:rounded-xl transition-all duration-150"
+          unoptimized
         />
       </div>
       {/* ---- Card body ---- */}

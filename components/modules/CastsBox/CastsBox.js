@@ -44,14 +44,15 @@ function CastsBox(props) {
             {data.cast.slice(0, 10).map((item) => (
               <div
                 key={item.credit_id}
-                className="bg-gray-950 max-w-fit rounded-md overflow-hidden min-w-[138px] inline-block mx-3"
+                className="bg-gray-950 max-w-[138px] rounded-md overflow-hidden min-w-[138px] inline-block mx-3"
               >
                 <Image
-                  src={`https://image.tmdb.org/t/p/w100${item.profile_path}`}
+                  src={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
                   width={100}
                   height={175}
                   alt={item.name}
                   className="w-full"
+                  unoptimized
                 />
                 <div className="p-2 flex flex-col gap-2 justify-between items-start overflow-hidden">
                   <h4 className="font-bold text-sm text-wrap">{item.name}</h4>
