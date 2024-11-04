@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import Image from "next/image";
 import useApi from "@/hooks/useApi";
 import { RiSignalWifiErrorLine } from "react-icons/ri";
-
+import CustomImage from "../CustomImage/CustomImage";
 
 function CastsBox(props) {
-  const { data, error , setApiUrl } = useApi();
+  const { data, error, setApiUrl } = useApi();
   const { postId, type } = props;
   const url = {
     value: `${type}/${postId}/credits`,
@@ -46,10 +46,11 @@ function CastsBox(props) {
                 key={item.credit_id}
                 className="bg-gray-950 max-w-[138px] rounded-md overflow-hidden min-w-[138px] inline-block mx-3"
               >
-                <Image
+                <CustomImage
                   src={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
                   width={100}
                   height={175}
+                  type={"person"}
                   alt={item.name}
                   className="w-full"
                   unoptimized

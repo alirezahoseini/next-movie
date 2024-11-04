@@ -41,7 +41,7 @@ function page({ params }) {
             }}
             title={`Similar ${params.details}s`}
             moreTitle="Show more"
-            moreHref={`discover/${params.details}`}
+            moreHref={`/discover/${params.details}`}
           />
         </>
       )}

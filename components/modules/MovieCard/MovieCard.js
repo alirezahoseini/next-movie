@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IoPlay } from "react-icons/io5";
 import imdb_logo from "@/app/files/images/IMDB_Logo_2016.svg";
+import CustomImage from "../CustomImage/CustomImage";
 
 function MovieCard(props) {
   const {
@@ -27,9 +28,10 @@ function MovieCard(props) {
         <div className="absolute w-[97%] h-[98%] rounded-lg bg-black z-10 bg-opacity-0 group-hover:backdrop-blur-[3px] group-hover:bg-opacity-35 group-hover:m-1 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-150">
           <IoPlay className="text-5xl p-3 bg-red-700 rounded-full scale-0 group-hover:scale-100 transition-all duration-150" />
         </div>
-        <Image
+        <CustomImage
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
           width={400}
+          type={'poster'}
           height={200}
           alt={itemTitle}
           className="w-full group-hover:p-1 group-hover:rounded-xl transition-all duration-150"

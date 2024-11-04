@@ -1,6 +1,7 @@
 "use clinet";
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { TbMoodSadSquint } from "react-icons/tb";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import MovieCard from "../MovieCard/MovieCard";
@@ -24,12 +25,14 @@ export default function Carousel({ url, moreTitle, title, moreHref, type }) {
     }
   }, [data, error]);
 
+  console.log(data);
+
   return (
     <>
-        <div className="mt-8 px-3">
-          <Title title={title} href={moreHref} moreTitle={moreTitle} />
-        
-      {slidesArray.length && !error ? (
+      <div className="mt-8 px-3">
+        <Title title={title} href={moreHref} moreTitle={moreTitle} />
+
+        {slidesArray.length && !error ? (
           <Swiper
             autoplay={{
               delay: 2500,
@@ -70,10 +73,15 @@ export default function Carousel({ url, moreTitle, title, moreHref, type }) {
               </SwiperSlide>
             ))}
           </Swiper>
-      ) : (
-        <CarouselLoader isLoading={isLoading} error={error} data={data} />
-      )}
-        </div>
+        ) : data?.results.length == 0 && !error ? (
+          <div className="flex items-center justify-center flex-col gap-2 h-64 ">
+            <TbMoodSadSquint className="text-slate-600 text-8xl" />
+            <span className="font-bold text-sm text-slate-300">There is nothing</span>
+          </div>
+        ) : (
+          <CarouselLoader isLoading={isLoading} error={error} data={data} />
+        )}
+      </div>
     </>
   );
 }
