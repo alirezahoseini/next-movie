@@ -11,7 +11,7 @@ export default function useApi() {
   const apiKey = "275fa05f4a9fc2a08e709dfa2ad6141d";
   const url = `${baseUrl}${apiUrl.value}${
     apiUrl.queries ? `?${apiUrl.queries}&` : "?"
-  }include_adult=true&api_key=${apiKey}`;
+  }&api_key=${apiKey}`;
 
   const fetcher = async (url) => {
     const res = await fetch(url);
