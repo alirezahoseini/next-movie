@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import useApi from "@/hooks/useApi";
 import MoviesGrid from "@/components/modules/MoviesGrid/MoviesGrid";
@@ -99,7 +99,7 @@ function page() {
   }, [pageConfigs.currentPage]);
 
   return (
-    <>
+    <Suspense>
       {pageConfigs.items && !error && (
         <>
           {/* -------- Main section --------  */}
@@ -145,7 +145,7 @@ function page() {
       {error && (
         <MoviesGridLoader isLoading={isLoading} error={error} data={data} />
       )}
-    </>
+    </Suspense>
   );
 }
 
