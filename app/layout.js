@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "@/components/templates/Header/Header";
 import Footer from "@/components/templates/Footer/Footer";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Next movies",
@@ -12,7 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Header />
-        {children}
+        <Suspense>{children}</Suspense>
         <Footer />
       </body>
     </html>

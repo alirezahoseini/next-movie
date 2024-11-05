@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { notFound } from "next/navigation";
 import useApi from "@/hooks/useApi";
 import MoviesGrid from "@/components/modules/MoviesGrid/MoviesGrid";
 import GlobalLoader from "@/components/modules/GlobalLoader/GlobalLoader";
