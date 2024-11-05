@@ -4,8 +4,10 @@ import Image from "next/image";
 import SearchBox from "../SearchBox/SearchBox";
 import { IoSearchOutline } from "react-icons/io5";
 import logo from "@/app/files/images/logo.svg";
+import { usePathname } from "next/navigation";
 
 function DesktopHeader(props) {
+  const path = usePathname();
   return (
     <div
       className={` z-[999] fixed top-0 right-0 w-full  ${
@@ -30,12 +32,18 @@ function DesktopHeader(props) {
             <Link href={"/discover/tv"}>TV series</Link>
           </li>
           {/* ---- Search button and search box ---- */}
-          <button
-            onClick={() => props.setIsOpenSearchBox((prevState) => !prevState)}
-          >
-            <IoSearchOutline className="text-2xl" />
-          </button>
-          <SearchBox {...props} />
+          {path !== "/search" && (
+            <>
+              <button
+                onClick={() =>
+                  props.setIsOpenSearchBox((prevState) => !prevState)
+                }
+              >
+                <IoSearchOutline className="text-2xl" />
+              </button>
+              <SearchBox {...props} />
+            </>
+          )}
         </ul>
       </div>
     </div>

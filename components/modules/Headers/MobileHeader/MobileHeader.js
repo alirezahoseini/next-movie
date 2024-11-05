@@ -8,9 +8,11 @@ import { AiOutlineHome } from "react-icons/ai";
 import { IoSearchOutline } from "react-icons/io5";
 import logo from "@/app/files/images/logo.svg";
 import SearchBox from "../SearchBox/SearchBox";
+import { usePathname } from "next/navigation";
 
 function MobileHeader(props) {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const path = usePathname();
   return (
     <div
       className={`fixed top-0 right-0 w-full z-50 flex items-center justify-between p-4 overflow-hidden lg:hidden  ${
@@ -24,12 +26,18 @@ function MobileHeader(props) {
       </Link>
       {/* ---- Buttons ---- */}
       <div className="flex items-center gap-6">
-        <button
-          onClick={() => props.setIsOpenSearchBox((prevState) => !prevState)}
-        >
-          <IoSearchOutline className="text-2xl" />
-        </button>
-        <SearchBox {...props} />
+        {path !== "/search" && (
+          <>
+            <button
+              onClick={() =>
+                props.setIsOpenSearchBox((prevState) => !prevState)
+              }
+            >
+              <IoSearchOutline className="text-2xl" />
+            </button>
+            <SearchBox {...props} />
+          </>
+        )}
         <button onClick={() => setIsOpenMenu((prevState) => !prevState)}>
           <SlMenu className="text-2xl" />
         </button>

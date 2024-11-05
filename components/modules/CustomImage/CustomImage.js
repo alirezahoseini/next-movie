@@ -8,9 +8,16 @@ function CustomImage(props) {
 
   return (
     <Image
-      onError={() => setSrc(props.type == 'poster' ? posterPlaceHolder.src : personPlaceHolder.src)}
+      onError={() =>
+        setSrc(
+          props.type == "poster" ? posterPlaceHolder.src : personPlaceHolder.src
+        )
+      }
       placeholder="blur"
-      blurDataURL={props.type == 'poster' ? posterPlaceHolder.src : personPlaceHolder.src}
+      blurDataURL={
+        props.type == "poster" ? posterPlaceHolder.src : personPlaceHolder.src
+      }
+      alt={props.alt ? props.alt : "Default alt"}
       {...props}
       src={src}
     />

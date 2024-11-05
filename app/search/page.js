@@ -1,15 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import TopSection from "@/components/templates/TopSection/TopSection";
 import { notFound } from "next/navigation";
 import useApi from "@/hooks/useApi";
 import MoviesGrid from "@/components/modules/MoviesGrid/MoviesGrid";
-import InsidePagesHeader from "@/components/modules/InsidePagesHeader/InsidePagesHeader";
 import GlobalLoader from "@/components/modules/GlobalLoader/GlobalLoader";
 import LoadMoreButton from "@/components/modules/LoadMoreButton/LoadMoreButton";
 import MoviesGridLoader from "@/components/modules/MoviesGrid/MoviesGridLoader";
 import { useRouter } from "next/navigation";
+import SearchPageHeader from "./SearchPageHeader";
 
 function page() {
   const searchParams = useSearchParams();
@@ -19,9 +18,10 @@ function page() {
   const { data, error, isLoading, setApiUrl } = useApi();
   const [pageConfigs, setPageConfigs] = useState({
     items: [],
-    currentPage: urlPageCount,
+    currentPage: urlPageCount || 1,
     allPages: 1,
-    apiQueris: `query=${search}`,
+    apiQueris: search,
+    searchedKey: search,
     apiPath: `search/multi`,
     isFirstLoad: true,
     isLoadingData: true,
@@ -30,7 +30,7 @@ function page() {
 
   const updateUrl = () => {
     router.replace(
-      `/search?${pageConfigs.apiQueris}&page=${pageConfigs.currentPage}`,
+      `/search?query=${pageConfigs.apiQueris}&page=${pageConfigs.currentPage}`,
       { scroll: false },
       { shallow: true }
     );
@@ -40,7 +40,7 @@ function page() {
     // Fetching
     setApiUrl({
       value: pageConfigs.apiPath,
-      queries: `${pageConfigs.apiQueris}&page=${pageConfigs.currentPage}`,
+      queries: `query=${pageConfigs.apiQueris}&page=${pageConfigs.currentPage}`,
     });
   };
 
@@ -103,9 +103,13 @@ function page() {
     <>
       {pageConfigs.items && !error && (
         <>
-        
           {/* -------- Main section --------  */}
-          <InsidePagesHeader title={"Search"} />
+          <SearchPageHeader
+            submitForm={getDataFromApi}
+            query={pageConfigs.searchedKey}
+            value={pageConfigs.apiQueris}
+            setValue={setPageConfigs}
+          />
           <MoviesGrid
             items={pageConfigs.items.filter(
               (item) => item.media_type === "movie" || item.media_type === "tv"
