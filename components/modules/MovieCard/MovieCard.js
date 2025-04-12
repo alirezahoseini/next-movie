@@ -29,7 +29,7 @@ function MovieCard(props) {
           <IoPlay className="text-5xl p-3 bg-red-700 rounded-full scale-0 group-hover:scale-100 transition-all duration-150" />
         </div>
         <CustomImage
-          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+          src={`/api/proxy?url=https://image.tmdb.org/t/p/w500/${poster_path}`}
           width={400}
           type={'poster'}
           height={200}

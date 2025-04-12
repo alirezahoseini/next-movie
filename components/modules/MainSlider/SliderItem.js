@@ -36,7 +36,7 @@ function SliderItem(props) {
         </div>
         <Image
           className="rounded-xl w-[150px] lg:w-[200px]"
-          src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+          src={`/api/proxy?url=https://image.tmdb.org/t/p/w500/${poster_path}`}
           width={200}
           height={300}
           alt={title}

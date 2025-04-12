@@ -47,7 +47,7 @@ function CastsBox(props) {
                 className="bg-gray-950 max-w-[138px] rounded-md overflow-hidden min-w-[138px] inline-block mx-3"
               >
                 <CustomImage
-                  src={`https://image.tmdb.org/t/p/w200${item.profile_path}`}
+                  src={`/api/proxy?url=https://image.tmdb.org/t/p/w200${item.profile_path}`}
                   width={100}
                   height={175}
                   type={"person"}

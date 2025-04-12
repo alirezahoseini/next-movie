@@ -38,7 +38,7 @@ function PostDetails(props) {
             width={300}
             height={400}
             unoptimized
-            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            src={`/api/proxy?url=https://image.tmdb.org/t/p/w500/${poster_path}`}
             className="rounded-lg w-2/6 lg:w-full"
             alt={itemName}
           />

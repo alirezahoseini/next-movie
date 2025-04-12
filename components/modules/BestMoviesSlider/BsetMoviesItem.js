@@ -9,7 +9,7 @@ function BsetMoviesItem({ name, media_type, id, backdrop_path, vote_average, fir
         <>
             <Link
                 href={`/${media_type}/${id}`}
-                style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop_path})` }}
+                style={{ backgroundImage: `url(/api/proxy?url=https://image.tmdb.org/t/p/original${backdrop_path})` }}
                 className='group w-full h-60 flex bg-cover bg-center rounded-lg items-end overflow-hidden relative'>
                 {/* ---- Item body ---- */}
                 <div className="transition-all duration-100 flex flex-col items-start gap-2 w-full px-4 pb-3 pt-12 bg-gradient-to-t from-black">
