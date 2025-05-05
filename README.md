@@ -1,6 +1,6 @@
 # 🎬 Next Movie App
 
-![Next Movie App Poster](https://imgurl.ir/uploads/p29780_next-movie-github-poster.jpg)
+![Next Movie App Poster](https://s6.uupload.ir/files/hero_0h5e.png)
 
 ---
 
