@@ -6,7 +6,7 @@ function SliderItem(props) {
     <div
       className="slider-bg-img block w-full h-[90vh] bg-center bg-no-repeat bg-cover relative"
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/w500${backdrop_path})`,
+        backgroundImage: `url(/api/proxy?url=https://image.tmdb.org/t/p/w500${backdrop_path})`,
         backgroundColor: "red",
       }}
     >
