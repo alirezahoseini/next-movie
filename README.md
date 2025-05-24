@@ -11,7 +11,7 @@ It is also possible to search. 😎
 
 - [Next.js](https://nextjs.org/) version 14 is used for the front-end and information is received from the [TMDB API](https://developer.themoviedb.org/docs/getting-started)
 
-👉 [Try Live Demo](https://nextmovie.a-hosseini.ir/)
+👉 [Try Live Demo](https://next-movie-dun.vercel.app/)
 
 ---
 
